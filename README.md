@@ -11,22 +11,23 @@ A discord.js-selfbot-v13 bot to change your discord status to what alter is fron
 
 # How to install
 1. Open `Main.js` in any text editor
-2. Scroll down the very bottom
+2. Scroll down to the very bottom
 3. Change `TOKEN_GOES_HERE` to your discord token
 4. Format alters in Alters.json:	
 
 `"Value of status message for alter": "Exact discord message to change status"`
 
-NOTE: (second value must be lowecase in file but the actual message you send to change fronts can be have any combination of uppercase and lowecase letters)
+NOTE: (second value must be lowercase in the file but the actual message you send to change fronts can have any combination of uppercase and lowercase letters)
 
 5. Format ID's.txt:
 
-You must add the discord users ID's that you allow to change your alters (seperated between a comma), ex:
+You must add the discord users ID's that you allow to change your alters (separated between a comma), ex:
 `810676381154803743,123123123412341,14234234523452345`
 
+To find a user's Discord ID (including your own), right-click their profile picture and select Copy ID
+
 6. Extract files.zip and open the folder
-7. Open command prompt and navigate to the folder using the command `cd` and then pasting the folder path
-8. run `node Main.js`
+7. Double click the start.bat file
 9. Profit?
 
 ## How to get your Discord Token
@@ -54,3 +55,11 @@ console.log(`%cYou now have your token in the clipboard!`, 'font-size: 16px');
 ```
 
 Credit: <img src="https://cdn.discordapp.com/emojis/889092230063734795.png" alt="." width="16" height="16"/> [<strong>hxr404</strong>](https://github.com/hxr404/Discord-Console-hacks)
+
+FAQ:
+1. Why would you want to let someone else to change whos fronting?
+For littles and other alters that might not be able to change it themselves
+2. How do I change whos fronting?
+Use the "Exact discord message to change status" that you setup in step 4
+3. Examples for file formatting?
+Look in /Examples folder
