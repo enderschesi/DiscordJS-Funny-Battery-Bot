@@ -3,6 +3,8 @@ const client = new Client({
     syncStatus: false,
     checkUpdate: false
 });
+const {setTimeout} = require('timers/promises');
+
 
 function GetData() {
     const fs = require('fs')
@@ -14,10 +16,10 @@ function GetData() {
         }
         global.allowedchangerstring = String(data);
     });
-    let rawdata = fs.readFileSync('Alters.json');
-    global.Alters = JSON.parse(rawdata);
+    let rawdata = fs.readFileSync('Battery.json');
+    global.Battery = JSON.parse(rawdata);
     values = [];
-    for (var k in global.Alters) values.push(Object.getOwnPropertyDescriptor(Alters, k).value);
+    for (var k in global.Battery) values.push(Object.getOwnPropertyDescriptor(Battery, k).value);
     global.valuesfinal = values
 }
 
@@ -27,29 +29,30 @@ client.on("ready", () => {
 });
 
 client.on("messageCreate", (msg) => {
-    var allowedchanger = new Set(['']);
+    let allowedchanger = new Set(['']);
     GetData();
-    if (global.allowedchangerstring != undefined) {
-        var allowedchanger = new Set(global.allowedchangerstring.split(","));
+    if (global.allowedchangerstring !== undefined) {
+        global.allowedchangerstring = allowedchangerstring.replace("\n", '');
+        allowedchanger = new Set(global.allowedchangerstring.split(","));
     }
-    if (global.valuesfinal != undefined) {
+    let valueslocal;
+    if (global.valuesfinal !== undefined) {
         if (allowedchanger.has(msg.author.id)) {
+            console.log("Allowed change")
             valueslocal = String(global.valuesfinal).split(",");
             if (valueslocal.includes(String(msg.content.toLowerCase()))) {
-                const testvar = Object.keys(global.Alters).find(key => global.Alters[key] === String(msg.content.toLowerCase()));
-                msg.reply("Status changed to: \"" + testvar + "\"");
-                console.log("Status changed to: \"" + testvar + "\"");
-                client.user.setPresence({ activities: [{ name: testvar }], status: 'online' });
-                client.user.setStatus('online');
-                client.settings.setCustomStatus({ text: testvar, status: 'online', expires: null });
+                const testnum = Object.keys(global.Battery).find(key => global.Battery[key] === String(msg.content.toLowerCase()));
+                const testvar = "an 8.420v battery (" + testnum + "%)"
+                msg.reply("Nickname changed to: " + testvar);
+                msg.guild.members.me.setNickname(testvar).then(r=> console.log("Changed username to: " + testvar))
             }
         }
     } else {
         valueslocal = String(global.valuesfinal).split(",");
         if (valueslocal.includes(String(msg.content.toLowerCase()))) {
-            msg.reply("DiscordJS-System-Bot version: 1.0 loaded. Try again to change fronts");
+            msg.reply("DiscordJS-Funny-Battery-Bot version: 1.0 loaded. Try again to change percentage");
         }
     }
 });
 
-client.login('TOKEN_GOES_HERE');
+client.login('NDU5MDMyNjcxNDA2Nzg0NTE1.GGCdou.rmPpa8hlwyPQCq8Wydn92cfhBNO2JUbodbbvMU');
