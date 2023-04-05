@@ -55,4 +55,4 @@ client.on("messageCreate", (msg) => {
     }
 });
 
-client.login('NDU5MDMyNjcxNDA2Nzg0NTE1.GGCdou.rmPpa8hlwyPQCq8Wydn92cfhBNO2JUbodbbvMU');
+client.login('IFUCKINGPOSTEDMYTOKENHERE');
